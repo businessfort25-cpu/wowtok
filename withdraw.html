@@ -20,6 +20,19 @@
             color: #ff4a5a;
             border-bottom: 1px solid #1f2c47;
             margin-bottom: 20px;
+            position: relative;
+        }
+        .btn-back {
+            position: absolute;
+            right: 10px;
+            top: 15px;
+            color: #8fa0c2;
+            text-decoration: none;
+            font-size: 14px;
+            border: 1px solid #1f2c47;
+            padding: 4px 10px;
+            border-radius: 5px;
+            background: #151c2c;
         }
         .withdraw-card {
             background: #151c2c;
@@ -73,8 +86,11 @@
 </head>
 <body>
 
-    <!-- عنوان الصفحة -->
-    <div class="header">📤 سحب الأرباح والرصيد</div>
+    <!-- عنوان الصفحة مع زر العودة للرئيسية -->
+    <div class="header">
+        <a href="index.html" class="btn-back">🔙 عودة</a>
+        📤 سحب الأرباح والرصيد
+    </div>
 
     <!-- كارت نموذج طلب السحب -->
     <div class="withdraw-card">
@@ -82,20 +98,46 @@
         <!-- حقل عنوان المحفظة -->
         <div class="input-group">
             <label>عنوان محفظتك الرقمية الشخصية (USDT - TRC20)</label>
-            <input type="text" placeholder="أدخل عنوان محفظتك لاستلام الأموال">
+            <input type="text" id="walletAddress" placeholder="أدخل عنوان محفظتك لاستلام الأموال">
             <div class="info-text">تأكد من صحة العنوان تماماً، فالعمليات الرقمية لا يمكن التراجع عنها.</div>
         </div>
 
         <!-- حقل المبلغ المراد سحبه -->
         <div class="input-group">
             <label>المبلغ المراد سحبه (USDT)</label>
-            <input type="number" placeholder="الحد الأدنى للسحب هو 10 USDT">
+            <input type="number" id="withdrawAmount" placeholder="الحد الأدنى للسحب هو 10 USDT">
             <div class="info-text" style="color: #00ffcc;">الرصيد المتاح لديك حالياً: 25.50 USDT</div>
         </div>
 
         <!-- زر إرسال الطلب -->
-        <button class="btn-withdraw" onclick="alert('تم إرسال طلب السحب بنجاح! سيقوم النظام الأمني بمراجعته وتحويل الأموال فوراً.')">تأكيد السحب الآمن</button>
+        <button class="btn-withdraw" onclick="processWithdrawal()">تأكيد السحب الآمن</button>
     </div>
+
+    <script>
+        function processWithdrawal() {
+            var address = document.getElementById("walletAddress").value;
+            var amount = parseFloat(document.getElementById("withdrawAmount").value);
+            var maxBalance = 25.50; 
+
+            if (address === "" || isNaN(amount)) {
+                alert("⚠️ يرجى ملء جميع الحقول (عنوان المحفظة والمبلغ).");
+                return;
+            }
+
+            if (amount < 10) {
+                alert("❌ عذراً، الحد الأدنى لعملية السحب هو 10 USDT.");
+                return;
+            }
+
+            if (amount > maxBalance) {
+                alert("❌ رصيدك الحالي غير كافٍ! الحد الأقصى المتاح للسحب هو 25.50 USDT.");
+                return;
+            }
+
+            alert("✅ تم إرسال طلب السحب بنجاح لمبلغ " + amount + " USDT إلى المحفظة:\n" + address + "\n\nسيقوم النظام الأمني بمراجعته وتحويل الأموال خلال دقائق.");
+            window.location.href = "index.html"; 
+        }
+    </script>
 
 </body>
 </html>
