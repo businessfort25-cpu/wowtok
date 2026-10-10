@@ -5,100 +5,162 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>شحن الرصيد - WOWTok VIP</title>
     <style>
+        /* إعدادات الخلفية السوداء الملكية */
         body {
-            font-family: sans-serif;
-            background-color: #0b0f19;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #070708; /* أسود داكن جداً */
             color: #ffffff;
             margin: 0;
             padding: 15px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
         }
-        .header {
-            text-align: center;
-            padding: 15px;
-            font-size: 20px;
-            font-weight: bold;
-            color: #00ffcc;
-            border-bottom: 1px solid #1f2c47;
-            margin-bottom: 20px;
+
+        /* كارت الإيداع المصقول */
+        .deposit-card {
+            background: #121214; /* أسود رمادي */
+            padding: 30px 25px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 380px;
+            border: 1px solid #1f1f23;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
             position: relative;
         }
+
+        /* عنوان الصفحة مع زر العودة للرئيسية */
+        .header-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #00ffcc; /* فسفوري مضيء */
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
         .btn-back {
             position: absolute;
-            right: 10px;
-            top: 15px;
-            color: #8fa0c2;
+            right: 20px;
+            top: 20px;
+            color: #7c7c85;
             text-decoration: none;
             font-size: 14px;
-            border: 1px solid #1f2c47;
-            padding: 4px 10px;
-            border-radius: 5px;
-            background: #151c2c;
-        }
-        .crypto-card {
-            background: #151c2c;
-            border: 1px solid #1f2c47;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        .network-badge {
-            background: #22314d;
-            color: #ff9900;
+            border: 1px solid #26262b;
             padding: 5px 12px;
-            border-radius: 6px;
-            font-size: 14px;
+            border-radius: 8px;
+            background: #1a1a1e;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover {
+            color: #ffffff;
+            border-color: #7c7c85;
+        }
+
+        /* بادج الشبكة المدعومة */
+        .network-badge {
+            background: #261c0c;
+            color: #ff9900; /* برتقالي خاص بالعملات */
+            border: 1px solid #3d2a10;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 13px;
             font-weight: bold;
             display: inline-block;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
         }
+
+        /* صندوق عنوان المحفظة الحركي */
         .address-box {
-            background: #0b0f19;
+            background: #070708;
             border: 1px dashed #00ffcc;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 14px;
+            border-radius: 10px;
             font-family: monospace;
-            font-size: 13px;
+            font-size: 14px;
             word-break: break-all;
             margin: 15px 0;
             color: #00ffcc;
+            text-align: center;
         }
-        .btn-copy, .btn-submit {
-            background: linear-gradient(135deg, #00ffcc, #0099ff);
-            color: #0b0f19;
-            border: none;
+
+        /* حقول الإدخال الداكنة */
+        .form-group {
+            margin-top: 15px;
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 13px;
+            color: #7c7c85;
+        }
+
+        .form-group input {
             width: 100%;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid #26262b;
+            background: #1a1a1e;
+            color: #ffffff;
+            box-sizing: border-box;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #00ffcc;
+            outline: none;
+        }
+
+        /* الأزرار التفاعلية */
+        .btn-action {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #00ffcc, #00b3ff);
+            border: none;
+            border-radius: 10px;
+            color: #000000;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 15px;
+            transition: 0.3s;
         }
-        .form-group {
-            margin-top: 20px;
-            text-align: right;
+
+        .btn-action:hover {
+            opacity: 0.9;
+            box-shadow: 0 5px 15px rgba(0, 255, 204, 0.3);
         }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            color: #8fa0c2;
+
+        .btn-copy {
+            background: #1a1a1e;
+            color: #00ffcc;
+            border: 1px solid #00ffcc;
+            margin-top: 0;
+            margin-bottom: 15px;
         }
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #1f2c47;
-            background: #0b0f19;
-            color: #ffffff;
-            box-sizing: border-box;
+
+        .btn-copy:hover {
+            background: #00ffcc;
+            color: #000000;
         }
+
+        /* التنبيهات الأمنية */
         .instructions {
-            margin-top: 25px;
-            background: #1f2c47;
+            margin-top: 20px;
+            background: #1a1515;
+            border: 1px solid #361e1e;
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 13px;
             line-height: 1.6;
             text-align: right;
@@ -107,62 +169,70 @@
 </head>
 <body>
 
-    <!-- عنوان الصفحة مع زر العودة -->
-    <div class="header">
+    <div class="deposit-card">
+        <!-- زر العودة للرئيسية -->
         <a href="index.html" class="btn-back">🔙 عودة</a>
-        📥 شحن حسابك الاستثماري
-    </div>
-
-    <!-- كارت بيانات المحفظة الرقمية -->
-    <div class="crypto-card">
-        <span class="network-badge">شبكة الإيداع المدعومة: USDT (TRC-20)</span>
-        <p style="color: #8fa0c2; font-size: 14px; margin: 0;">قم بنسخ عنوان المحفظة التالي لتحويل الرصيد:</p>
         
-        <!-- عنوان محفظة المنصة -->
+        <div class="header-title">📥 شحن الرصيد الاستثماري</div>
+        
+        <span class="network-badge">شبكة الإيداع المدعومة: USDT (TRC-20)</span>
+        
+        <p style="color: #7c7c85; font-size: 13px; text-align: center; margin: 0 0 10px 0;">قم بنسخ عنوان المحفظة التالي لتحويل الرصيد:</p>
+        
+        <!-- عنوان المحفظة التجريبية -->
         <div class="address-box" id="walletAddress">TYr12345XyzTokenSecurityNetwork2026TRC20</div>
-        <button class="btn-copy" onclick="copyAddress()">نسخ عنوان المحفظة</button>
+        <button class="btn-action btn-copy" onclick="copyAddress()">نسخ عنوان المحفظة</button>
 
-        <!-- نموذج إرسال الإثبات التجريبي -->
+        <!-- نموذج إدخال البيانات التفاعلي -->
         <div class="form-group">
             <label>المبلغ المراد شحنه ($):</label>
             <input type="number" placeholder="مثال: 50" id="depositAmount">
         </div>
         <div class="form-group">
             <label>رقم عملية التحويل (TxID):</label>
-            <input type="text" placeholder="أدخل رمز التحويل هنا" id="txidInput">
+            <input type="text" placeholder="أدخل الرمز أو الوصل هنا" id="txidInput">
         </div>
-        <button class="btn-submit" onclick="submitDeposit()">تأكيد الإيداع التجريبي</button>
-    </div>
+        
+        <button class="btn-action" onclick="submitDeposit()">تأكيد الإيداع التجريبي</button>
 
-    <!-- تعليمات هامة للمستخدم -->
-    <div class="instructions">
-        <b style="color: #ff4a5a;">⚠️ تنبيهات أمنية هامة للعملية:</b>
-        <ul style="margin: 8px 0 0 0; padding-right: 20px;">
-            <li>لا ترسل أي عملة أخرى غير **USDT** عبر شبكة **TRC20** لتجنب ضياع أموالك.</li>
-            <li>يستغرق تأكيد عملية الشحن من 1 إلى 5 دقائق لتظهر في حسابك تلقائياً.</li>
-        </ul>
+        <!-- التنبيهات الأمنية -->
+        <div class="instructions">
+            <b style="color: #ff4a5a;">⚠️ تنبيهات أمنية هامة:</b>
+            <ul style="margin: 8px 0 0 0; padding-right: 20px; color: #b5b5bd;">
+                <li>لا ترسل أي عملة أخرى غير <span style="color: #00ffcc;">USDT</span> عبر شبكة <span style="color: #ff9900;">TRC20</span> لتجنب ضياع أموالك.</li>
+                <li>يستغرق تأكيد الشحن التجريبي من 1 إلى 5 دقائق ليظهر في الحساب.</li>
+            </ul>
+        </div>
     </div>
 
     <script>
+        // دالة لنسخ العنوان الفعلي إلى حافظة الهاتف
         function copyAddress() {
             var addressText = document.getElementById("walletAddress").innerText;
             navigator.clipboard.writeText(addressText).then(function() {
-                alert("تم نسخ عنوان المحفظة بنجاح إلى الحافظة!");
+                alert("✅ تم نسخ عنوان المحفظة بنجاح إلى الحافظة!");
             }).catch(function() {
-                alert("فشل النسخ التلقائي، يرجى تحديد النص ونسخه يدوياً.");
+                alert("يرجى تحديد النص ونسخه يدوياً.");
             });
         }
 
+        // دالة محاكاة إرسال الإيداع وحفظ البيانات حتى لا يخرج الحساب
         function submitDeposit() {
-            var amount = document.getElementById("depositAmount").value;
+            var amount = parseFloat(document.getElementById("depositAmount").value);
             var txid = document.getElementById("txidInput").value;
             
-            if(amount === "" || txid === "") {
-                alert("يرجى ملء جميع الحقول المطلوبة لطلب الإيداع.");
-            } else {
-                alert("تم إرسال طلب الإيداع التجريبي بقيمة " + amount + "$ بنجاح! سيتم مراجعته.");
-                window.location.href = "index.html";
+            if(isNaN(amount) || amount <= 0 || txid === "") {
+                alert("⚠️ يرجى ملء جميع الحقول المطلوبة بشكل صحيح.");
+                return;
             }
+            
+            // تحديث الرصيد المحفوظ في الذاكرة التلقائية للمنصة وإضافة المبلغ الجديد
+            var currentBalance = parseFloat(localStorage.getItem("userBalance")) || 150.00;
+            var newBalance = currentBalance + amount;
+            localStorage.setItem("userBalance", newBalance.toFixed(2));
+
+            alert("✅ تم إرسال طلب الشحن بنجاح بقيمة " + amount + "$!\nسيتم تحديث الرصيد تلقائياً في لوحة التحكم.");
+            window.location.href = "index.html"; // يعود للرئيسية والحساب يظل مفتوحاً بالرصيد الجديد
         }
     </script>
 </body>
