@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شحن الرصيد - WOWTok VIP</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #0b0f19;
+            color: #ffffff;
+            margin: 0;
+            padding: 15px;
+        }
+        .header {
+            text-align: center;
+            padding: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #00ffcc;
+            border-bottom: 1px solid #1f2c47;
+            margin-bottom: 20px;
+        }
+        .crypto-card {
+            background: #151c2c;
+            border: 1px solid #1f2c47;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .network-badge {
+            background: #22314d;
+            color: #ff9900;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .address-box {
+            background: #0b0f19;
+            border: 1px dashed #00ffcc;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 13px;
+            word-break: break-all;
+            margin: 15px 0;
+            color: #00ffcc;
+        }
+        .btn-copy {
+            background: linear-gradient(135deg, #00ffcc, #0099ff);
+            color: #0b0f19;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .instructions {
+            margin-top: 25px;
+            background: #1f2c47;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 13px;
+            line-height: 1.6;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- عنوان الصفحة -->
+    <div class="header">📥 شحن حسابك الاستثماري</div>
+
+    <!-- كارت بيانات المحفظة الرقمية -->
+    <div class="crypto-card">
+        <span class="network-badge">شبكة الإيداع المدعومة: USDT (TRC-20)</span>
+        <p style="color: #8fa0c2; font-size: 14px; margin: 0;">قم بنسخ عنوان المحفظة التالي لتحويل الرصيد:</p>
+        
+        <!-- عنوان محفظة المنصة (عنوان تجريبي) -->
+        <div class="address-box" id="walletAddress">TYr12345XyzTokenSecurityNetwork2026TRC20</div>
+        
+        <button class="btn-copy" onclick="alert('تم نسخ عنوان المحفظة بنجاح! يمكنك الآن الذهاب لمحفظتك وتحويل الرصيد.')">نسخ عنوان المحفظة</button>
+    </div>
+
+    <!-- تعليمات هامة للمستخدم -->
+    <div class="instructions">
+        <b style="color: #ff4a5a;">⚠️ تنبيهات أمنية هامة للعملية:</b>
+        <ul style="margin: 8px 0 0 0; padding-right: 20px;">
+            <li>لا ترسل أي عملة أخرى غير **USDT** عبر شبكة **TRC20** لتجنب ضياع أموالك.</li>
+            <li>يستغرق تأكيد عملية الشحن من 1 إلى 5 دقائق لتظهر في حسابك تلقائياً.</li>
+        </ul>
+    </div>
+
+</body>
+</html>
