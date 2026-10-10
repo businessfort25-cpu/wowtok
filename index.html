@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="acodefree" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب جديد ذكي</title>
+    <style>
+        /* تنسيق عام للموقع والألوان */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .register-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .register-container h2 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555555;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+            background-color: #fafafa;
+        }
+
+        .form-group input:focus {
+            border-color: #007bff;
+            background-color: #ffffff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+        }
+
+        /* تنسيق رسائل الخطأ الذكية */
+        .error-message {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+            font-weight: 600;
+        }
+
+        /* تحويل حقل الإدخال للون الأحمر عند الخطأ */
+        .form-group.invalid input {
+            border-color: #dc3545;
+            background-color: #fff8f8;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-container">
+        <h2>إنشاء حساب جديد</h2>
+        
+        <form id="registerForm" action="#" method="POST" onsubmit="return validateForm(event)">
+            
+            <!-- 1. رمز الحالة -->
+            <div class="form-group">
+                <label for="invite-code">رمز الحالة (إن وجد)</label>
+                <input type="text" id="invite-code" name="invite_code" placeholder="أدخل رمز الإحالة">
+            </div>
+
+            <!-- 2. اسم المستخدم (يوزر) -->
+            <div class="form-group" id="usernameGroup">
+                <label for="username">اسم المستخدم (اليوزر) *</label>
+                <input type="text" id="username" name="username" placeholder="مثال: ameen_99" required>
+                <div class="error-message" id="usernameError">اسم المستخدم يجب أن يكون أطول من 3 أحرف.</div>
+            </div>
+
+            <!-- 3. الاسم الحقيقي -->
+            <div class="form-group">
+                <label for="full-name">الاسم الحقيقي بالكامل *</label>
+                <input type="text" id="full-name" name="full_name" placeholder="أدخل اسمك الثلاثي" required>
+            </div>
+
+            <!-- 4. رقم الهاتف -->
+            <div class="form-group">
+                <label for="phone">رقم الهاتف *</label>
+                <input type="tel" id="phone" name="phone" placeholder="مثال: 07700000000" required>
+            </div>
+
+            <!-- 5. كلمة المرور -->
+            <div class="form-group" id="passwordGroup">
+                <label for="password">كلمة المرور *</label>
+                <input type="password" id="password" name="password" placeholder="أدخل كلمة مرور قوية" required>
+            </div>
+
+            <!-- 6. تأكيد كلمة المرور -->
+            <div class="form-group" id="confirmGroup">
+                <label for="confirm-password">تأكيد كلمة المرور *</label>
+                <input type="password" id="confirm-password" name="confirm_password" placeholder="أعد كتابة كلمة المرور" required>
+                <div class="error-message" id="confirmError">عذراً، كلمات المرور غير متطابقة!</div>
+            </div>
+
+            <!-- 7. رمز السحب -->
+            <div class="form-group" id="pinGroup">
+                <label for="withdraw-pin">رمز السحب المالي (PIN) *</label>
+                <input type="password" id="withdraw-pin" name="withdraw_pin" maxlength="6" placeholder="رقم سري خاص بالسحب (4 إلى 6 أرقام)" required>
+                <div class="error-message" id="pinError">رمز السحب يجب أن يتكون من أرقام فقط وبطول 4 إلى 6 خانات.</div>
+            </div>
+
+            <!-- زر الإرسال -->
+            <button type="submit" class="btn-submit">تسجيل الحساب</button>
+
+        </form>
+    </div>
+
+    <!-- 🧠 هنا يبدأ كود الذكاء والتفاعل (JavaScript) -->
+    <script>
+        function validateForm(event) {
+            let isValid = true;
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const withdrawPin = document.getElementById('withdraw-pin').value;
+
+            document.querySelectorAll('.form-group').forEach(group => group.classList.remove('invalid'));
+            document.querySelectorAll('.error-message').forEach(error => error.style.display = 'none');
+
+            if (username.length < 4) {
+                document.getElementById('usernameGroup').classList.add('invalid');
+                document.getElementById('usernameError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (password !== confirmPassword) {
+                document.getElementById('confirmGroup').classList.add('invalid');
+                document.getElementById('confirmError').style.display = 'block';
+                isValid = false;
+            }
+
+            const pinPattern = /^\d{4,6}$/;
+            if (!pinPattern.test(withdrawPin)) {
+                document.getElementById('pinGroup').classList.add('invalid');
+                document.getElementById('pinError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+                return false;
+            }
+
+            alert('🎉 ممتاز! تم التحقق من البيانات وهي صحيحة 100% وجاهزة للتسجيل.');
+            return true;
+        }
+    </script>
+
+</body>
+</html>
+  
