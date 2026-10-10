@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة WOWTok - تسجيل الدخول</title>
+    <title>منصة WOWTok - لوحة التحكم</title>
     <style>
         body {
             font-family: sans-serif;
@@ -12,14 +12,16 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
+            padding: 15px;
+            box-sizing: border-box;
         }
         .login-card {
             background: #151c2c;
             padding: 30px;
             border-radius: 15px;
-            width: 85%;
+            width: 100%;
             max-width: 350px;
             text-align: center;
             border: 1px solid #1f2c47;
@@ -52,19 +54,103 @@
             cursor: pointer;
             margin-top: 15px;
         }
+        .dashboard {
+            display: none;
+            background: #151c2c;
+            padding: 20px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid #1f2c47;
+        }
+        .balance-box {
+            background: #0b0f19;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 15px 0;
+            border: 1px solid #1f2c47;
+        }
+        .balance-amount {
+            font-size: 32px;
+            font-weight: bold;
+            color: #00ffcc;
+            margin-top: 5px;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .btn-action {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .btn-deposit {
+            background: #ff9900;
+            color: #0b0f19;
+        }
+        .btn-withdraw {
+            background: #ff4a5a;
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
 
-<div class="login-card">
+<div class="login-card" id="loginInterface">
     <div class="logo">⚡ WOWTok VIP</div>
     <p style="color: #8fa0c2; font-size: 14px;">منصة استثمارية تجريبية مؤمنة</p>
     
-    <input type="text" placeholder="اسم المستخدم أو البريد">
-    <input type="password" placeholder="كلمة المرور">
+    <input type="text" placeholder="اسم المستخدم أو البريد" id="username">
+    <input type="password" placeholder="كلمة المرور" id="password">
     
-    <button onclick="alert('أهلاً بك! الواجهة تعمل بنجاح، والخطوة القادمة هي ربط الأرباح.')">تسجيل الدخول</button>
+    <button onclick="handleLogin()">تسجيل الدخول</button>
 </div>
+
+<div class="dashboard" id="dashboardInterface">
+    <div class="logo" style="text-align: center;">⚡ WOWTok VIP</div>
+    <p style="color: #8fa0c2; font-size: 14px; text-align: center;">مرحباً بك في لوحة تحكم أرباحك</p>
+    
+    <div class="balance-box">
+        <div style="color: #8fa0c2; font-size: 14px;">إجمالي الرصيد التجريبي الاستثماري</div>
+        <div class="balance-amount">$<span id="userBalance">150.00</span></div>
+    </div>
+    
+    <div class="action-buttons">
+        <a href="deposit.html" class="btn-action btn-deposit">📥 شحن (إيداع)</a>
+        <a href="withdraw.html" class="btn-action btn-withdraw">📤 سحب الأرباح</a>
+    </div>
+</div>
+
+<script>
+    function handleLogin() {
+        var user = document.getElementById("username").value;
+        var pass = document.getElementById("password").value;
+        
+        if (user === "" || pass === "") {
+            alert("يرجى إدخال اسم المستخدم وكلمة المرور لتجربة الدخول.");
+        } else {
+            document.getElementById("loginInterface").style.display = "none";
+            document.getElementById("dashboardInterface").style.display = "block";
+            startProfitSimulation();
+        }
+    }
+
+    function startProfitSimulation() {
+        setInterval(function() {
+            var balanceSpan = document.getElementById("userBalance");
+            var currentBalance = parseFloat(balanceSpan.innerText);
+            var newBalance = currentBalance + 0.05;
+            balanceSpan.innerText = newBalance.toFixed(2);
+        }, 2000);
+    }
+</script>
 
 </body>
 </html>
