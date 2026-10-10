@@ -20,6 +20,19 @@
             color: #00ffcc;
             border-bottom: 1px solid #1f2c47;
             margin-bottom: 20px;
+            position: relative;
+        }
+        .btn-back {
+            position: absolute;
+            right: 10px;
+            top: 15px;
+            color: #8fa0c2;
+            text-decoration: none;
+            font-size: 14px;
+            border: 1px solid #1f2c47;
+            padding: 4px 10px;
+            border-radius: 5px;
+            background: #151c2c;
         }
         .crypto-card {
             background: #151c2c;
@@ -50,7 +63,7 @@
             margin: 15px 0;
             color: #00ffcc;
         }
-        .btn-copy {
+        .btn-copy, .btn-submit {
             background: linear-gradient(135deg, #00ffcc, #0099ff);
             color: #0b0f19;
             border: none;
@@ -60,6 +73,26 @@
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
+            margin-top: 10px;
+        }
+        .form-group {
+            margin-top: 20px;
+            text-align: right;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #8fa0c2;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #1f2c47;
+            background: #0b0f19;
+            color: #ffffff;
+            box-sizing: border-box;
         }
         .instructions {
             margin-top: 25px;
@@ -74,18 +107,31 @@
 </head>
 <body>
 
-    <!-- عنوان الصفحة -->
-    <div class="header">📥 شحن حسابك الاستثماري</div>
+    <!-- عنوان الصفحة مع زر العودة -->
+    <div class="header">
+        <a href="index.html" class="btn-back">🔙 عودة</a>
+        📥 شحن حسابك الاستثماري
+    </div>
 
     <!-- كارت بيانات المحفظة الرقمية -->
     <div class="crypto-card">
         <span class="network-badge">شبكة الإيداع المدعومة: USDT (TRC-20)</span>
         <p style="color: #8fa0c2; font-size: 14px; margin: 0;">قم بنسخ عنوان المحفظة التالي لتحويل الرصيد:</p>
         
-        <!-- عنوان محفظة المنصة (عنوان تجريبي) -->
+        <!-- عنوان محفظة المنصة -->
         <div class="address-box" id="walletAddress">TYr12345XyzTokenSecurityNetwork2026TRC20</div>
-        
-        <button class="btn-copy" onclick="alert('تم نسخ عنوان المحفظة بنجاح! يمكنك الآن الذهاب لمحفظتك وتحويل الرصيد.')">نسخ عنوان المحفظة</button>
+        <button class="btn-copy" onclick="copyAddress()">نسخ عنوان المحفظة</button>
+
+        <!-- نموذج إرسال الإثبات التجريبي -->
+        <div class="form-group">
+            <label>المبلغ المراد شحنه ($):</label>
+            <input type="number" placeholder="مثال: 50" id="depositAmount">
+        </div>
+        <div class="form-group">
+            <label>رقم عملية التحويل (TxID):</label>
+            <input type="text" placeholder="أدخل رمز التحويل هنا" id="txidInput">
+        </div>
+        <button class="btn-submit" onclick="submitDeposit()">تأكيد الإيداع التجريبي</button>
     </div>
 
     <!-- تعليمات هامة للمستخدم -->
@@ -97,5 +143,27 @@
         </ul>
     </div>
 
+    <script>
+        function copyAddress() {
+            var addressText = document.getElementById("walletAddress").innerText;
+            navigator.clipboard.writeText(addressText).then(function() {
+                alert("تم نسخ عنوان المحفظة بنجاح إلى الحافظة!");
+            }).catch(function() {
+                alert("فشل النسخ التلقائي، يرجى تحديد النص ونسخه يدوياً.");
+            });
+        }
+
+        function submitDeposit() {
+            var amount = document.getElementById("depositAmount").value;
+            var txid = document.getElementById("txidInput").value;
+            
+            if(amount === "" || txid === "") {
+                alert("يرجى ملء جميع الحقول المطلوبة لطلب الإيداع.");
+            } else {
+                alert("تم إرسال طلب الإيداع التجريبي بقيمة " + amount + "$ بنجاح! سيتم مراجعته.");
+                window.location.href = "index.html";
+            }
+        }
+    </script>
 </body>
 </html>
