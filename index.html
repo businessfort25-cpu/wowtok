@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة WOWTok - لوحة التحكم</title>
     <style>
+        /* إعدادات الخلفية السوداء الملكية */
         body {
-            font-family: sans-serif;
-            background-color: #0b0f19;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #070708; /* أسود داكن جداً */
             color: #ffffff;
             display: flex;
             justify-content: center;
@@ -17,138 +18,211 @@
             padding: 15px;
             box-sizing: border-box;
         }
-        .login-card {
-            background: #151c2c;
-            padding: 30px;
-            border-radius: 15px;
+        
+        /* كارت تسجيل الدخول واللوحة */
+        .main-card {
+            background: #121214; /* أسود رمادي مصقول */
+            padding: 30px 25px;
+            border-radius: 20px;
             width: 100%;
-            max-width: 350px;
+            max-width: 380px;
             text-align: center;
-            border: 1px solid #1f2c47;
+            border: 1px solid #1f1f23;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
         }
+        
+        /* الشعار الفسفوري المضيء */
         .logo {
-            font-size: 26px;
+            font-size: 28px;
             font-weight: bold;
-            color: #00ffcc;
-            margin-bottom: 20px;
+            color: #00ffcc; 
+            margin-bottom: 5px;
         }
+        
+        .subtitle {
+            color: #7c7c85;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        
+        /* حقول الإدخال */
         input {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             margin: 10px 0;
-            border-radius: 8px;
-            border: 1px solid #1f2c47;
-            background: #0b0f19;
+            border-radius: 10px;
+            border: 1px solid #26262b;
+            background: #1a1a1e;
             color: white;
             box-sizing: border-box;
+            font-size: 15px;
+            transition: 0.3s;
         }
-        button {
+        
+        input:focus {
+            border-color: #00ffcc;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 255, 204, 0.2);
+        }
+        
+        /* الأزرار الرئيسية */
+        button, .btn-link {
             width: 100%;
-            padding: 12px;
-            background: #00ffcc;
+            padding: 14px;
+            background: linear-gradient(135deg, #00ffcc, #00b3ff);
             border: none;
-            border-radius: 8px;
-            color: #0b0f19;
+            border-radius: 10px;
+            color: #000000;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             margin-top: 15px;
+            transition: 0.3s;
+            display: inline-block;
+            text-decoration: none;
+            box-sizing: border-box;
         }
+        
+        button:hover, .btn-link:hover {
+            opacity: 0.9;
+            box-shadow: 0 5px 15px rgba(0, 255, 204, 0.3);
+        }
+        
+        /* واجهة لوحة التحكم (مخفية بالبداية) */
         .dashboard {
             display: none;
-            background: #151c2c;
-            padding: 20px;
-            border-radius: 15px;
-            width: 100%;
-            max-width: 400px;
-            border: 1px solid #1f2c47;
         }
+        
+        /* صندوق عرض الرصيد */
         .balance-box {
-            background: #0b0f19;
+            background: #1a1a1e;
             padding: 20px;
             border-radius: 12px;
             text-align: center;
-            margin: 15px 0;
-            border: 1px solid #1f2c47;
+            margin: 20px 0;
+            border: 1px solid #26262b;
         }
+        
         .balance-amount {
-            font-size: 32px;
+            font-size: 34px;
             font-weight: bold;
             color: #00ffcc;
             margin-top: 5px;
         }
+        
+        /* أزرار العمليات الملونة */
         .action-buttons {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             margin-top: 20px;
         }
-        .btn-action {
-            flex: 1;
-            padding: 12px;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 16px;
-        }
+        
         .btn-deposit {
-            background: #ff9900;
-            color: #0b0f19;
+            background: linear-gradient(135deg, #ff9900, #ffcc00);
+            color: #000000;
         }
+        
         .btn-withdraw {
-            background: #ff4a5a;
+            background: linear-gradient(135deg, #ff4a5a, #ff7684);
             color: #ffffff;
+        }
+        
+        .btn-logout {
+            background: #26262b;
+            color: #ff4a5a;
+            border: 1px solid #ff4a5a;
         }
     </style>
 </head>
 <body>
 
-<div class="login-card" id="loginInterface">
-    <div class="logo">⚡ WOWTok VIP</div>
-    <p style="color: #8fa0c2; font-size: 14px;">منصة استثمارية تجريبية مؤمنة</p>
+<div class="main-card">
     
-    <input type="text" placeholder="اسم المستخدم أو البريد" id="username">
-    <input type="password" placeholder="كلمة المرور" id="password">
-    
-    <button onclick="handleLogin()">تسجيل الدخول</button>
-</div>
+    <!-- 1. واجهة تسجيل الدخول المظلمة -->
+    <div id="loginInterface">
+        <div class="logo">⚡ WOWTok VIP</div>
+        <div class="subtitle">منصة استثمارية ذكية مؤمنة</div>
+        
+        <input type="text" placeholder="اسم المستخدم أو البريد" id="username">
+        <input type="password" placeholder="كلمة المرور" id="password">
+        
+        <button onclick="handleLogin()">تسجيل الدخول</button>
+    </div>
 
-<div class="dashboard" id="dashboardInterface">
-    <div class="logo" style="text-align: center;">⚡ WOWTok VIP</div>
-    <p style="color: #8fa0c2; font-size: 14px; text-align: center;">مرحباً بك في لوحة تحكم أرباحك</p>
-    
-    <div class="balance-box">
-        <div style="color: #8fa0c2; font-size: 14px;">إجمالي الرصيد التجريبي الاستثماري</div>
-        <div class="balance-amount">$<span id="userBalance">150.00</span></div>
+    <!-- 2. واجهة لوحة تحكم الأرباح (تظهر بعد الدخول) -->
+    <div id="dashboardInterface" class="dashboard">
+        <div class="logo">⚡ WOWTok VIP</div>
+        <div class="subtitle" style="margin-bottom: 15px;">مرحباً بك في مركز أرباحك</div>
+        
+        <!-- الرصيد الاستثماري -->
+        <div class="balance-box">
+            <div style="color: #7c7c85; font-size: 14px;">إجمالي الرصيد الحالي</div>
+            <div class="balance-amount">$<span id="userBalance">150.00</span></div>
+        </div>
+        
+        <!-- أزرار التنقل المباشر -->
+        <div class="action-buttons">
+            <a href="deposit.html" class="btn-link btn-deposit">📥 إيداع</a>
+            <a href="withdraw.html" class="btn-link btn-withdraw">📤 سحب</a>
+        </div>
+        
+        <button class="btn-logout" onclick="handleLogout()">تسجيل الخروج 🚪</button>
     </div>
-    
-    <div class="action-buttons">
-        <a href="deposit.html" class="btn-action btn-deposit">📥 شحن (إيداع)</a>
-        <a href="withdraw.html" class="btn-action btn-withdraw">📤 سحب الأرباح</a>
-    </div>
+
 </div>
 
 <script>
+    // عند فتح الصفحة: فحص هل الحساب مسجل دخول سابقاً ليبقى مفتوحاً
+    window.onload = function() {
+        if (localStorage.getItem("isLoggedIn") === "true") {
+            var savedBalance = localStorage.getItem("userBalance");
+            if (savedBalance) {
+                document.getElementById("userBalance").innerText = savedBalance;
+            }
+            showDashboard();
+        }
+    }
+
+    // دالة تنفيذ الدخول وحفظ الحالة بالذاكرة
     function handleLogin() {
         var user = document.getElementById("username").value;
         var pass = document.getElementById("password").value;
         
         if (user === "" || pass === "") {
-            alert("يرجى إدخال اسم المستخدم وكلمة المرور لتجربة الدخول.");
+            alert("⚠️ يرجى إدخال البيانات لتجربة المنصة.");
         } else {
-            document.getElementById("loginInterface").style.display = "none";
-            document.getElementById("dashboardInterface").style.display = "block";
-            startProfitSimulation();
+            localStorage.setItem("isLoggedIn", "true");
+            if (!localStorage.getItem("userBalance")) {
+                localStorage.setItem("userBalance", "150.00");
+            }
+            showDashboard();
         }
     }
 
+    // إظهار لوحة التحكم وتفعيل العداد
+    function showDashboard() {
+        document.getElementById("loginInterface").style.display = "none";
+        document.getElementById("dashboardInterface").style.display = "block";
+        startProfitSimulation();
+    }
+
+    // محاكاة نمو الأرباح التلقائي كل ثانيتين وحفظها
     function startProfitSimulation() {
         setInterval(function() {
             var balanceSpan = document.getElementById("userBalance");
             var currentBalance = parseFloat(balanceSpan.innerText);
-            var newBalance = currentBalance + 0.05;
+            var newBalance = currentBalance + 0.05; // زيادة الأرباح
+            
             balanceSpan.innerText = newBalance.toFixed(2);
+            localStorage.setItem("userBalance", newBalance.toFixed(2));
         }, 2000);
+    }
+
+    // دالة تسجيل الخروج لمسح الذاكرة
+    function handleLogout() {
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("userBalance");
+        window.location.reload();
     }
 </script>
 
