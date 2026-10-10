@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سحب الأموال - WOWTok VIP</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #0b0f19;
+            color: #ffffff;
+            margin: 0;
+            padding: 15px;
+        }
+        .header {
+            text-align: center;
+            padding: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #ff4a5a;
+            border-bottom: 1px solid #1f2c47;
+            margin-bottom: 20px;
+        }
+        .withdraw-card {
+            background: #151c2c;
+            border: 1px solid #1f2c47;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .input-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #8fa0c2;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #1f2c47;
+            background: #0b0f19;
+            color: white;
+            box-sizing: border-box;
+            font-size: 15px;
+        }
+        input:focus {
+            border-color: #ff4a5a;
+            outline: none;
+        }
+        .btn-withdraw {
+            background: linear-gradient(135deg, #ff4a5a, #ff7684);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 74, 90, 0.3);
+        }
+        .info-text {
+            font-size: 13px;
+            color: #8fa0c2;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- عنوان الصفحة -->
+    <div class="header">📤 سحب الأرباح والرصيد</div>
+
+    <!-- كارت نموذج طلب السحب -->
+    <div class="withdraw-card">
+        
+        <!-- حقل عنوان المحفظة -->
+        <div class="input-group">
+            <label>عنوان محفظتك الرقمية الشخصية (USDT - TRC20)</label>
+            <input type="text" placeholder="أدخل عنوان محفظتك لاستلام الأموال">
+            <div class="info-text">تأكد من صحة العنوان تماماً، فالعمليات الرقمية لا يمكن التراجع عنها.</div>
+        </div>
+
+        <!-- حقل المبلغ المراد سحبه -->
+        <div class="input-group">
+            <label>المبلغ المراد سحبه (USDT)</label>
+            <input type="number" placeholder="الحد الأدنى للسحب هو 10 USDT">
+            <div class="info-text" style="color: #00ffcc;">الرصيد المتاح لديك حالياً: 25.50 USDT</div>
+        </div>
+
+        <!-- زر إرسال الطلب -->
+        <button class="btn-withdraw" onclick="alert('تم إرسال طلب السحب بنجاح! سيقوم النظام الأمني بمراجعته وتحويل الأموال فوراً.')">تأكيد السحب الآمن</button>
+    </div>
+
+</body>
+</html>
