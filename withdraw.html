@@ -5,108 +5,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سحب الأموال - WOWTok VIP</title>
     <style>
+        /* إعدادات الخلفية السوداء الملكية */
         body {
-            font-family: sans-serif;
-            background-color: #0b0f19;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #070708; /* أسود داكن جداً */
             color: #ffffff;
             margin: 0;
             padding: 15px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
         }
-        .header {
-            text-align: center;
-            padding: 15px;
-            font-size: 20px;
-            font-weight: bold;
-            color: #ff4a5a;
-            border-bottom: 1px solid #1f2c47;
-            margin-bottom: 20px;
+
+        /* كارت السحب المصقول */
+        .withdraw-card {
+            background: #121214; /* أسود رمادي */
+            padding: 30px 25px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 380px;
+            border: 1px solid #1f1f23;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
             position: relative;
         }
+
+        /* عنوان الصفحة مع زر العودة للرئيسية */
+        .header-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #ff4a5a; /* أحمر تنبيهي فخم */
+            text-align: center;
+            margin-bottom: 25px;
+            margin-top: 10px;
+        }
+
         .btn-back {
             position: absolute;
-            right: 10px;
-            top: 15px;
-            color: #8fa0c2;
+            right: 20px;
+            top: 20px;
+            color: #7c7c85;
             text-decoration: none;
             font-size: 14px;
-            border: 1px solid #1f2c47;
-            padding: 4px 10px;
-            border-radius: 5px;
-            background: #151c2c;
+            border: 1px solid #26262b;
+            padding: 5px 12px;
+            border-radius: 8px;
+            background: #1a1a1e;
+            transition: 0.3s;
         }
-        .withdraw-card {
-            background: #151c2c;
-            border: 1px solid #1f2c47;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+
+        .btn-back:hover {
+            color: #ffffff;
+            border-color: #7c7c85;
         }
-        .input-group {
+
+        /* حقول الإدخال الداكنة */
+        .form-group {
             margin-bottom: 20px;
             text-align: right;
         }
-        label {
+
+        .form-group label {
             display: block;
             margin-bottom: 8px;
-            font-size: 14px;
-            color: #8fa0c2;
+            font-size: 13px;
+            color: #7c7c85;
         }
-        input {
+
+        .form-group input {
             width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #1f2c47;
-            background: #0b0f19;
-            color: white;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid #26262b;
+            background: #1a1a1e;
+            color: #ffffff;
             box-sizing: border-box;
             font-size: 15px;
+            transition: 0.3s;
         }
-        input:focus {
+
+        .form-group input:focus {
             border-color: #ff4a5a;
             outline: none;
+            box-shadow: 0 0 8px rgba(255, 74, 90, 0.2);
         }
+
+        /* زر تأكيد السحب */
         .btn-withdraw {
+            width: 100%;
+            padding: 14px;
             background: linear-gradient(135deg, #ff4a5a, #ff7684);
             color: white;
             border: none;
-            width: 100%;
-            padding: 14px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(255, 74, 90, 0.3);
+            margin-top: 10px;
+            transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(255, 74, 90, 0.2);
         }
+
+        .btn-withdraw:hover {
+            opacity: 0.9;
+            box-shadow: 0 5px 15px rgba(255, 74, 90, 0.4);
+        }
+
         .info-text {
             font-size: 13px;
-            color: #8fa0c2;
-            margin-top: 5px;
+            color: #7c7c85;
+            margin-top: 6px;
         }
     </style>
 </head>
 <body>
 
-    <!-- عنوان الصفحة مع زر العودة للرئيسية -->
-    <div class="header">
-        <a href="index.html" class="btn-back">🔙 عودة</a>
-        📤 سحب الأرباح والرصيد
-    </div>
-
-    <!-- كارت نموذج طلب السحب -->
     <div class="withdraw-card">
+        <!-- زر العودة للرئيسية -->
+        <a href="index.html" class="btn-back">🔙 عودة</a>
         
-        <!-- حقل عنوان المحفظة -->
-        <div class="input-group">
-            <label>عنوان محفظتك الرقمية الشخصية (USDT - TRC20)</label>
+        <div class="header-title">📤 سحب الأرباح والرصيد</div>
+        
+        <!-- حقل عنوان محفظة المستخدم -->
+        <div class="form-group">
+            <label>عنوان محفظتك الشخصية (USDT - TRC20):</label>
             <input type="text" id="walletAddress" placeholder="أدخل عنوان محفظتك لاستلام الأموال">
-            <div class="info-text">تأكد من صحة العنوان تماماً، فالعمليات الرقمية لا يمكن التراجع عنها.</div>
+            <div class="info-text">تأكد من صحة العنوان، فالعمليات الرقمية لا يمكن التراجع عنها.</div>
         </div>
 
         <!-- حقل المبلغ المراد سحبه -->
-        <div class="input-group">
-            <label>المبلغ المراد سحبه (USDT)</label>
+        <div class="form-group">
+            <label>المبلغ المراد سحبه (USDT):</label>
             <input type="number" id="withdrawAmount" placeholder="الحد الأدنى للسحب هو 10 USDT">
-            <div class="info-text" style="color: #00ffcc;">الرصيد المتاح لديك حالياً: 25.50 USDT</div>
+            <div class="info-text" style="color: #00ffcc;">الرصيد المتاح لديك حالياً: <span id="availableBalance">0.00</span> $</div>
         </div>
 
         <!-- زر إرسال الطلب -->
@@ -114,28 +147,39 @@
     </div>
 
     <script>
+        // استدعاء الرصيد التلقائي المحدث من الذاكرة وعرضه للمستخدم
+        var currentBalance = parseFloat(localStorage.getItem("userBalance")) || 150.00;
+        document.getElementById("availableBalance").innerText = currentBalance.toFixed(2);
+
         function processWithdrawal() {
             var address = document.getElementById("walletAddress").value;
             var amount = parseFloat(document.getElementById("withdrawAmount").value);
-            var maxBalance = 25.50; 
+            var maxBalance = parseFloat(localStorage.getItem("userBalance")) || 150.00;
 
+            // 1. فحص الحقول الفارغة
             if (address === "" || isNaN(amount)) {
                 alert("⚠️ يرجى ملء جميع الحقول (عنوان المحفظة والمبلغ).");
                 return;
             }
 
+            // 2. فحص الحد الأدنى للسحب
             if (amount < 10) {
                 alert("❌ عذراً، الحد الأدنى لعملية السحب هو 10 USDT.");
                 return;
             }
 
+            // 3. فحص كفاية الرصيد الحقيقي
             if (amount > maxBalance) {
-                alert("❌ رصيدك الحالي غير كافٍ! الحد الأقصى المتاح للسحب هو 25.50 USDT.");
+                alert("❌ رصيدك الحالي غير كافٍ! الحد الأقصى المتاح لك هو " + maxBalance.toFixed(2) + " $");
                 return;
             }
 
-            alert("✅ تم إرسال طلب السحب بنجاح لمبلغ " + amount + " USDT إلى المحفظة:\n" + address + "\n\nسيقوم النظام الأمني بمراجعته وتحويل الأموال خلال دقائق.");
-            window.location.href = "index.html"; 
+            // 4. خصم المبلغ من الذاكرة وحفظ الرصيد الجديد
+            var newBalance = maxBalance - amount;
+            localStorage.setItem("userBalance", newBalance.toFixed(2));
+
+            alert("✅ تم إرسال طلب السحب بنجاح لمبلغ " + amount + " USDT!\nتم خصم القيمة من حسابك بنجاح.");
+            window.location.href = "index.html"; // العودة للرئيسية والحساب مفتوح بالرصيد الجديد
         }
     </script>
 
